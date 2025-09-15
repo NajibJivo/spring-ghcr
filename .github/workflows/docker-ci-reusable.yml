@@ -1,0 +1,29 @@
+name: Docker CI reusable
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0 (pinned)
+
+
+      - name: Compose up
+        run: |
+          # Run the container in detached mode
+          docker compose up -d
+          # Wait for a few seconds to ensure the container is up and running
+          sleep 40
+
+      - name: Probe health
+        run: |
+          # Test the application endpoint
+          curl -fsSL http://localhost:8090/actuator/health > /dev/null
+
+      - name: Compose down (always)
+        if: always()
+        run: |
+          # Stop and remove the container
+          docker compose down
