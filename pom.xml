@@ -10,7 +10,7 @@
     </parent>
     <groupId>ek.osnb</groupId>
     <artifactId>spring-ghcr</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version> <!--  updated 0.0.1-SNAPSHOT -> 0.0.2-SNAPSHOT -->
     <name>spring-ghcr</name>
     <description>spring-ghcr</description>
     <url/>
